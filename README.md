@@ -56,6 +56,10 @@ class UserValidator extends ContextualValidator
     protected $messages = [
         'first_name.required' => 'First name is required!'
     ];
+
+    protected $attributeNames = [
+        'last_name' => 'Last Name'
+    ];
 }
 ```
 This service is then instantiated and the validation works much the same as Laravel's built-in validation.

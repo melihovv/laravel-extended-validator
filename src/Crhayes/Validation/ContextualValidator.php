@@ -34,6 +34,13 @@ abstract class ContextualValidator implements MessageProvider
 	protected $messages = array();
 
 	/**
+	 * Store any custom names of attributes.
+	 *
+	 * @var array
+	 */
+	protected $attributeNames = array();
+
+	/**
 	 * Store any contexts we are validating within.
 	 *
 	 * @var array
@@ -182,7 +189,12 @@ abstract class ContextualValidator implements MessageProvider
 	{
 		$rules = $this->bindReplacements($this->getRulesInContext());
 
-		$validator = Validator::make($this->attributes, $rules, $this->messages);
+		$validator = Validator::make(
+			$this->attributes,
+			$rules,
+			$this->messages,
+			$this->attributeNames
+		);
 
 		$this->addConditionalRules($validator);
 
